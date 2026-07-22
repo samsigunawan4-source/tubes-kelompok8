@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div>
             <h2 class="text-2xl font-bold text-gray-800">Dashboard</h2>
-            <p class="text-sm text-gray-500">Ringkasan informasi sistem</p>
+            <p class="text-sm text-gray-500">Ringkasan statistik dan informasi sistem</p>
         </div>
     </x-slot>
 
