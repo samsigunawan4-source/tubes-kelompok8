@@ -17,7 +17,7 @@ class ApplicationController extends Controller
                 return redirect()->route('student.profile.edit')->with('error', 'Lengkapi profil akademik Anda terlebih dahulu.');
             }
             $applications = $user->student->applications()->with('vacancy.company')->latest()->get();
-            $studentSkillIds = $user->student->skills->pluck('id');
+            $studentSkillIds = $user->student->skills->pluck('id')->toArray();
             
             $availableVacancies = Vacancy::with(['company', 'skills'])
                 ->where('status', 'approved')
@@ -28,7 +28,7 @@ class ApplicationController extends Controller
                 ->latest()
                 ->get();
 
-            return view('student.applications.index', compact('applications', 'availableVacancies'));
+            return view('student.applications.index', compact('applications', 'availableVacancies', 'studentSkillIds'));
         } elseif ($user->role === 'perusahaan') {
             if (!$user->company) {
                 return redirect()->route('company.profile.edit')->with('error', 'Lengkapi profil perusahaan Anda terlebih dahulu.');

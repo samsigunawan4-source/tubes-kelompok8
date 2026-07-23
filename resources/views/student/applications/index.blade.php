@@ -90,7 +90,16 @@
                                         <p class="font-bold text-indigo-600 mb-1">Cocok dengan Skill Anda:</p>
                                         <div class="flex flex-wrap gap-1">
                                             @foreach($vacancy->skills as $skill)
-                                                <span class="bg-indigo-100 text-indigo-800 text-[10px] px-2 py-0.5 rounded-full font-bold">{{ $skill->name }}</span>
+                                                @if(in_array($skill->id, $studentSkillIds))
+                                                    <span class="bg-green-100 text-green-800 border border-green-300 text-[10px] px-2 py-0.5 rounded-full font-bold flex items-center gap-1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                                                        {{ $skill->name }}
+                                                    </span>
+                                                @else
+                                                    <span class="bg-gray-100 text-gray-500 border border-gray-200 text-[10px] px-2 py-0.5 rounded-full font-bold">
+                                                        {{ $skill->name }}
+                                                    </span>
+                                                @endif
                                             @endforeach
                                         </div>
                                     </div>

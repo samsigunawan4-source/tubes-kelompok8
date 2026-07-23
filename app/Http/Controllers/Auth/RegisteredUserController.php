@@ -46,6 +46,8 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect(route('login'))->with('status', 'Registrasi berhasil! Silakan cek email Anda untuk verifikasi sebelum login.');
+        Auth::login($user);
+
+        return redirect(route('dashboard', absolute: false));
     }
 }
